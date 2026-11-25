@@ -11,6 +11,7 @@
   --page: min(1180px, calc(100% - 40px));
 }
 
+
 * {
   box-sizing: border-box;
 }
@@ -1061,4 +1062,112 @@ footer p {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+
+/* Portfolio evidence shares the typography and palette of the original site. */
+.professional-statement {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 6vw, 80px);
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.professional-statement h3 {
+  max-width: 480px;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -.04em;
+}
+
+.professional-statement .path-kicker { color: var(--blue); }
+.professional-statement p { margin-top: 0; }
+.resource-links { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+.resource-links .text-link { display: inline-flex; align-items: center; min-height: 44px; }
+.file-type { font-family: "DM Mono", monospace; font-size: .75rem; }
+
+.project-card { gap: 28px; }
+.project-card .project-body { margin: 0 0 auto; }
+.project-card .project-topline { font-size: .75rem; }
+.project-card li { font-size: .75rem; }
+.project-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 12px;
+}
+.neptune-project { background: #142238; color: var(--paper); }
+.relic-project { background: #e6e0d0; color: var(--ink); }
+.relic-image { object-fit: contain; background: #f2ecde; }
+.coco-project .project-image { object-fit: contain; background: #06232a; }
+.case-study { border-top: 1px solid currentColor; padding-top: 10px; }
+summary { cursor: pointer; min-height: 44px; padding: 10px 0; font-weight: 800; }
+.case-study dl { margin: 12px 0 20px; }
+.case-study dt { font-weight: 800; margin-top: 18px; }
+.case-study dd { margin: 5px 0 0; font-size: .95rem; }
+.inline-resource { display: inline-block; padding: 10px 0; font-weight: 700; }
+
+.showreel-section { border-top: 1px solid var(--line); }
+.film { margin: 0; }
+.film video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+  border-radius: 20px;
+}
+.film figcaption { margin: 16px 0 12px; color: #4d586b; font-size: .9rem; }
+.showreel-section .resource-links { margin-top: 16px; }
+.credential-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.credential-card { padding: clamp(24px, 4vw, 40px); background: var(--white); border: 1px solid var(--line); border-radius: 20px; }
+.credential-card h3 { font-size: 1.8rem; line-height: 1.2; letter-spacing: -.035em; }
+.credential-card h3 span { font-size: 1.3rem; }
+.credential-date { margin: 0 0 28px; font-family: "DM Mono", monospace; font-size: .75rem; color: #4d586b; }
+.credential-note { margin-bottom: 0; font-size: .8rem; color: #4d586b; }
+.reflection-section { border-top: 1px solid var(--line); }
+.journal-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; margin-top: 64px; }
+.journal-heading h3 { font-size: 1.5rem; }
+.journal-heading p { color: #4d586b; }
+.journal { margin: 12px 0 40px; padding: 0; list-style: none; }
+.journal li { display: grid; grid-template-columns: .35fr 1fr; gap: 32px; padding: 28px 0; border-top: 1px solid var(--line); }
+.journal time { font-family: "DM Mono", monospace; font-size: .85rem; padding-top: 4px; }
+.journal h4 { margin: 0 0 8px; font-size: 1.15rem; }
+.journal p { margin: 0; max-width: 740px; }
+.credits { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 0; }
+.credits p { max-width: 850px; }
+
+/* The two-colour ring remains visible on both paper and dark project panels. */
+body :is(a, button, summary, video):focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 7px var(--white);
+}
+
+@media (max-width: 900px) {
+  .professional-statement { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .credential-grid { grid-template-columns: 1fr; }
+  .journal li { grid-template-columns: 1fr; gap: 12px; }
+  .professional-statement, .journal-heading { margin-top: 40px; }
+  .film video { border-radius: 12px; }
+}
+@media print {
+  .site-header, .hero-actions, .hero-visual, .film video, .contact-section, footer { display: none !important; }
+  body { background: white; color: black; font-size: 10pt; }
+  .hero { display: block; min-height: 0; padding: 24px 0; }
+  .hero h1 { font-size: 30pt; }
+  .section { padding: 24px 0 !important; }
+  .section-label { margin-bottom: 20px; }
+  .project-card, .credential-card, .skill-card { break-inside: avoid; min-height: 0; }
+  .project-image { max-height: 180px; object-fit: contain; }
+  .project-card h3 { font-size: 24pt; }
+  .skills-section, .skill-card, .path-column, .project-card { color: black !important; background: white !important; }
+  .skills-section p, .skill-card p, .path-column p { color: black !important; }
+  a { text-decoration: underline; }
 }
